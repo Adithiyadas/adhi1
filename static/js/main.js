@@ -1,0 +1,1 @@
+console.log('this js script is from about page!');
