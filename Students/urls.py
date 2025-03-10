@@ -4,5 +4,6 @@ from django.urls import include
 from . import views
 
 urlpatterns = [
-    path('',views.getStudents)
+    path('',views.getStudents),
+    path('entry/',views.getStudentForm)
 ]
