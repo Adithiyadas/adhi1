@@ -2,9 +2,12 @@ from django.shortcuts import render,redirect
 from django.template import loader
 from Students.models import Student
 from Students.forms import StudentForm
+from django.contrib.auth.decorators import login_required
+
 
 from django.http import HttpResponse
 
+@login_required
 def getStudents(request):
     students_list=Student.objects.all().values()
     template=loader.get_template('studentsPage.html')

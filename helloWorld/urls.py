@@ -26,5 +26,6 @@ urlpatterns = [
     path('',views.homePage),
     path('about/',views.aboutPage),
     path('students/',include('Students.urls')),
-    path('login/',include('userAuthentication.urls'))
+    path('login/',include('userAuthentication.urls')),
+    path('signup/',include('userAuthentication.urls'))
 ]
