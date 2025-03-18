@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <h1>Enter login details!</h1>
+        <form method=post action=''>
+            {%csrf_token%}
+            {{form.as_p}}
+
+            <input type='submit' value='login' />
+        </form>
+
+        {%if messages%}
+            {%for m in messages%}
+                {{m.message}}
+            {%endfor%}
+        {%endif%}
+    </body>
+</html>

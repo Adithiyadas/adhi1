@@ -1,14 +1,14 @@
-from tempfile import template
 from django.shortcuts import render,redirect
 from django.template import loader
 from Students.models import Student
-from django.http import HttpResponse 
 from Students.forms import StudentForm
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+
+from django.http import HttpResponse
+
 @login_required
-def students(request):
+def getStudents(request):
     students_list=Student.objects.all().values()
     template=loader.get_template('all_students.html')
     context={
@@ -25,19 +25,36 @@ def details(request,id):
     }
     return HttpResponse(template.render(context,request))
 
-def student_entry(request):
+def getStudentForm(request):
     if request.method=='POST':
-     st_form=StudentForm(request.POST)
-     if st_form.is_valid():
-        st_form.save()
-        return  redirect("success")
+        student_form=StudentForm(request.POST)
+
+        if student_form.is_valid():
+            student_form.save()
+            return redirect("success")
+        
     else:
-        st_form=StudentForm()
-    template=loader.get_template('student_entry.html')
+        student_form=StudentForm()
+
+    template=loader.get_template('studentEntry.html')
     context={
-        'student_form':st_form
+        'student_form':student_form
     }
+
     return HttpResponse(template.render(context,request))
+
 def success(request):
-   return render(request,'success.html')
-    
+    print('hello!')
+    return render(request,'success.html')
+
+def details(request,id):
+    student=Student.objects.get(id=id)
+    template=loader.get_template('details.html')
+    context={
+        'student_detail':student
+    }
+
+    return HttpResponse(template.render(context,request))
+
+
+
