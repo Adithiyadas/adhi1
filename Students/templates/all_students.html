@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>student list</title>
+</head>
+<body>
+        
+</body>
+</html><html>
+    <body>
+        <h1>Student</h1>
+<ul>
+        {% for x in students %}
+        <li><a href="details/{{x.id}}">{{x.firstName}}</li>
+
+        {% endfor %}
+</ul>
+<p>add new student<a href="/Students/entry">
+        new students
+</a></p>
+</body>
+</html>
